@@ -1,3 +1,7 @@
+# Project specific ignore
+.idea/
+# End Project specific ignore
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
