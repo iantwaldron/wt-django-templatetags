@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wt-django-tools"
+description = "A set of tools and abstractions for Django projects."
+dynamic = ["version"]
+requires-python = ">=3.9"
+dependencies = [
+    "django>=4.2"
+]
