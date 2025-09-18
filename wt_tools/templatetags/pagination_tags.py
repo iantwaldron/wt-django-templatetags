@@ -9,7 +9,7 @@ register = template.Library()
 @register.simple_tag
 def relative_url(
         value: Union[int, str],
-        field_name: str,
+        field_name: str = 'page',
         urlencode: str = None
 ) -> str:
     """
@@ -19,9 +19,9 @@ def relative_url(
         value: The position within the paginated QuerySet. Often an integer but
             can also be the string 'last.'
         field_name: The name of the parameter containing the position value.
-            Most often 'page' but can be overridden.
+            Most often 'page' but can be overridden. Defaults to 'page.'
         urlencode: Encoded GET parameters (if any). Will contain the position
-            parameter if present in the query string.
+            parameter if present in the query string. Defaults to None.
 
     Returns:
         A relative URL beginning with ?<field_name>=<value>. Any other
