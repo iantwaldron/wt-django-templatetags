@@ -51,3 +51,6 @@ Issues = "https://github.com/ian-wt/wt-django-tools/issues"
 
 [tool.setuptools_scm]
 version_file = "wt_tools/_version.py"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE= "tests.test_settings"
