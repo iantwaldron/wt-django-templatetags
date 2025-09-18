@@ -48,3 +48,11 @@ class TestRelativeURLTemplateTag(SimpleTestCase):
         )
         result = template.render(Context())
         self.assertEqual(result, "?page=2&search=django")
+
+    def test_default_field_name(self):
+        template = Template(
+            "{% load pagination_tags %}"
+            "{% relative_url 2 %}"
+        )
+        result = template.render(Context())
+        self.assertEqual(result, "?page=2")
