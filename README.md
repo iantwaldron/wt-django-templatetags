@@ -2,12 +2,12 @@
 [![Pytest](https://github.com/ian-wt/wt-django-tools/actions/workflows/pytest.yaml/badge.svg?branch=master)](https://github.com/ian-wt/wt-django-tools/actions/workflows/pytest.yaml)
 [![codecov](https://codecov.io/gh/ian-wt/wt-django-tools/graph/badge.svg?token=9MHTDPGG1N)](https://codecov.io/gh/ian-wt/wt-django-tools)
 
-A set of tools and abstractions for Django projects.
+Tools and abstractions for Django projects.
 
 ## Installation
 This project isn't yet published on PyPI. To install directly from GitHub using pip:
 ```shell
-wt-django-tools @ git+https://github.com/ian-wt/wt-django-tools.git@master
+pip install wt-django-tools @ git+https://github.com/ian-wt/wt-django-tools.git@master
 ```
 Once installed, add ```wt_tools``` to ```INSTALLED_APPS``` in your settings module.
 ```shell
@@ -19,10 +19,10 @@ INSTALLED_APPS = [
 
 ## Use
 ### Pagination Tags
-To use the ```pagination_tags``` Django templatetags library in your project,
+To use the ```pagination_tags``` templatetags library in your project,
 first load the tags with ```{% load pagination_tags %}.```
 
-To use the ```relative_url``` tag, you need to pass a page index at a minimum.
+To use the ```relative_url``` tag, you need to pass to the tag a page index.
 This could be a number or the string ```'last'``` if the index is in the final
 position of the paginated ```QuerySet```. The tag additionally accepts optional
 arguments for ```field_name``` and ```urlencode```.
@@ -33,7 +33,7 @@ overridden in your views so make sure your views and the ```field_name``` arg
 passed to the tag are consistent.
 
 Last, the ```urlencode``` parameter is used when a query string may be present.
-If your view won't every handle a query string, then you can leave the default
+If your view won't ever handle a query string, then you can leave the default
 value of ```None``` alone.
 
 #### Example
