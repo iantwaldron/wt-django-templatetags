@@ -34,11 +34,19 @@ readme = "README.md"
 keywords = ["django"]
 
 [project.optional-dependencies]
-dev = ["pytest"]
-test = ["pytest"]
+dev = [
+    "pytest-django",
+    "pytest-cov"
+]
+# For CICD testing only
+test = [
+    "pytest-django",
+    "pytest-cov"
+]
 
 [project.urls]
 Homepage = "https://github.com/ian-wt/wt-django-tools"
+Repository = "https://github.com/ian-wt/wt-django-tools"
 Issues = "https://github.com/ian-wt/wt-django-tools/issues"
 
 [tool.setuptools_scm]
