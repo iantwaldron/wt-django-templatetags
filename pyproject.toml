@@ -48,6 +48,7 @@ test = [
 Homepage = "https://github.com/ian-wt/wt-django-tools"
 Repository = "https://github.com/ian-wt/wt-django-tools"
 Issues = "https://github.com/ian-wt/wt-django-tools/issues"
+Documentation = "https://github.com/ian-wt/wt-django-tools#readme"
 
 [tool.setuptools_scm]
 version_file = "wt_tools/_version.py"
