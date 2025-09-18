@@ -1,6 +1,7 @@
 from typing import Union
 
 from django import template
+from django.utils.safestring import mark_safe
 
 register = template.Library()
 
@@ -37,4 +38,4 @@ def relative_url(
         if encoded_qs:
             url = '{}&{}'.format(url, encoded_qs)
 
-    return url
+    return mark_safe(url)
