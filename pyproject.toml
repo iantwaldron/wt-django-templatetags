@@ -33,6 +33,10 @@ dynamic = ["version"]
 readme = "README.md"
 keywords = ["django"]
 
+[project.optional-dependencies]
+dev = ["pytest"]
+test = ["pytest"]
+
 [project.urls]
 Homepage = "https://github.com/ian-wt/wt-django-tools"
 Issues = "https://github.com/ian-wt/wt-django-tools/issues"
