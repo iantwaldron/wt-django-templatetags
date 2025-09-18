@@ -5,7 +5,10 @@
 Tools and abstractions for Django projects.
 
 ## Installation
-This project isn't yet published on PyPI. To install directly from GitHub using pip:
+To install the most recent stable release:
+```pip install wt-django-tools```
+
+To install the development branch from GitHub:
 ```shell
 pip install "wt-django-tools @ git+https://github.com/ian-wt/wt-django-tools.git@master"
 ```
