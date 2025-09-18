@@ -1,4 +1,5 @@
 # wt-django-tools
+[![Pytest](https://github.com/ian-wt/wt-django-tools/actions/workflows/pytest.yaml/badge.svg?branch=master)](https://github.com/ian-wt/wt-django-tools/actions/workflows/pytest.yaml)
 [![codecov](https://codecov.io/gh/ian-wt/wt-django-tools/graph/badge.svg?token=9MHTDPGG1N)](https://codecov.io/gh/ian-wt/wt-django-tools)
 
 A set of tools and abstractions for Django projects.
