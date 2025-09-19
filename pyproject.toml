@@ -35,7 +35,8 @@ keywords = ["django"]
 [project.optional-dependencies]
 dev = [
     "pytest-django",
-    "pytest-cov"
+    "pytest-cov",
+    "sphinx",
 ]
 # For CICD testing only
 test = [
