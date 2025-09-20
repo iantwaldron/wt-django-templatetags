@@ -1,4 +1,4 @@
-wt-django-tools documentation
+wt-django-templatetags documentation
 =============================
 
 .. toctree::
