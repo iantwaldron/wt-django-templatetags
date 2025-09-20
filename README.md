@@ -35,7 +35,7 @@ TEMPLATES = [
                 ...
             ],
             'libraries': {
-                'pagination_tags': 'wt_templatetags.pagination_tags',
+                'pagination_tags': 'wt_templatetags.templatetags.pagination_tags',
             }
         },
     },
