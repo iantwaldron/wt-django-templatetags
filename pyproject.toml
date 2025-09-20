@@ -3,9 +3,9 @@ requires = ["setuptools", "setuptools_scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "wt-django-tools"
+name = "wt-django-templatetags"
 requires-python = ">=3.9"
-description = "A set of tools and abstractions for Django projects."
+description = "Useful templatetags for Django projects."
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Environment :: Web Environment",
@@ -45,13 +45,13 @@ test = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/ian-wt/wt-django-tools"
-Repository = "https://github.com/ian-wt/wt-django-tools"
-Issues = "https://github.com/ian-wt/wt-django-tools/issues"
-Documentation = "https://github.com/ian-wt/wt-django-tools#readme"
+Homepage = "https://github.com/ian-wt/wt-django-templatetags"
+Repository = "https://github.com/ian-wt/wt-django-templatetags"
+Issues = "https://github.com/ian-wt/wt-django-templatetags/issues"
+Documentation = "https://github.com/ian-wt/wt-django-templatetags#readme"
 
 [tool.setuptools_scm]
-version_file = "wt_tools/_version.py"
+version_file = "wt_templatetags/_version.py"
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE= "tests.test_settings"

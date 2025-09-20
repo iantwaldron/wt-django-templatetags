@@ -7,7 +7,7 @@ SECRET_KEY = 'secretkey'
 INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.auth',
-    'wt_tools'
+    'wt_templatetags'
 ]
 
 TEMPLATES = [
