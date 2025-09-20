@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools", "setuptools_scm"]
+requires = ["setuptools>=77.0.0", "setuptools_scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -37,6 +37,8 @@ dev = [
     "pytest-django",
     "pytest-cov",
     "sphinx",
+    "build",
+    "twine",
 ]
 # For CICD testing only
 test = [
