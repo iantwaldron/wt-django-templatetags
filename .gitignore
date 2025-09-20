@@ -1,6 +1,7 @@
 # Project specific ignore
 .idea/
-wt_tools/_version.py
+wt_templatetags/_version.py
+
 # End Project specific ignore
 
 # Byte-compiled / optimized / DLL files
