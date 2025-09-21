@@ -5,7 +5,7 @@
 Useful templatetags for Django projects.
 
 ## Installation
-Install from PyPi:
+Install from PyPI:
 ```shell
 pip install wt-django-templatetags
 ```
