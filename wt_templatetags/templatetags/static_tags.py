@@ -42,9 +42,6 @@ def make_min(path):
 class StaticMinNode(StaticNode):
     """
     StaticNode subclass that transforms paths to use minified files.
-
-    Overrides handle_simple to insert a suffix (e.g., '.css' becomes
-       '.min.css').
     """
 
     @classmethod
@@ -55,4 +52,13 @@ class StaticMinNode(StaticNode):
 
 @register.tag
 def static_min(parser, token):
+    """
+    Extends Django 'static' template tag to transform path to use minified
+       files (e.g., '.css' becomes '.min.css').
+
+    Usage::
+
+        {% static path [as varname] %}
+        {# same as Django usage #}
+    """
     return StaticMinNode.handle_token(parser, token)
