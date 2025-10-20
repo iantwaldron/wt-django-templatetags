@@ -34,7 +34,7 @@ jobs:
       - name: Run tests and collect coverage
         run: |
           if find . -name "test_*.py" -o -name "*_test.py" | grep -q .; then
-              pytest --cov=wt_tools --cov-branch --cov-report=xml
+              pytest --cov=wt_templatetags --cov-branch --cov-report=xml
               echo "Tests found. Running pytest."
           else
               echo "No test files found, skipping pytest"
