@@ -84,3 +84,58 @@ To extend this example further we can supply values to override the defaults:
 <h1>Hello World!</h1>
 <a href="{% relative_url page_obj.next_page_number 'page' request.GET.urlencode %}">Next Page</a>
 ```
+
+### Static Tags
+To use the static_tags template tags library in your project, first load the tags with {% load static_tags %}
+
+#### static_min
+Use the `static_min` tag to update a static file's path with a suffix indicating a minimized file is being used.
+
+The path `main.css` becomes `main.min.css` with `{% static_min 'main.css %}'`.
+
+The types of static files affect can be overridded by providing a list or tuple
+of extension types as strings in the form of '.<ext>' and has a default value of `['.css', '.js']`.
+
+The value for 'min' can be overridded with the setting `MIN_SUFFIX`.
+
+By default, the tag returns the path unaffected if no extensions match. If you
+prefer an exception be raised (not recommended in production), use setting `STATIC_MIN_FAIL_SILENT=False`.
+
+#### static_version
+Browsers like to cache static files. This can be inconvenience when we're 
+pushing updates to resources like style sheets and javascript. We can often
+force a refresh by appending a query string to trick the browser into thinking
+the file has changed. This tag does that.
+
+Use the `static_version` tag to append a query string containing a version
+established with the setting `STATIC_VERSION`. Ideally, this value is set with
+an environment variable.
+
+The path `main.css` becomes `main.css?v=1.2.3` with `{% static_version 'main.css' %}`
+and the setting `STATIC_VERSION=1.2.3`.
+
+If a version isn't provided to settings, the tag will return the original path
+unmodified. If you prefer an exception be raised (not recommended in production),
+use setting `STATIC_VERSION_FAIL_SILENT=True`.
+
+#### smart_static
+Use the `smart_static` tag to conditionally apply the tags `static_min` and `static_version`
+for different environments. For example, you probably only want minified files and versioning
+in a production environment.
+
+To apply the conditional logic, set the value for setting `SMART_STATIC_ACTIVE` to `True`
+for production and `False` for development. The value defaults to `False` so you
+only need to set this in production.
+
+#### Example Settings
+
+```python
+# settings.py
+import os
+
+IS_PRODUCTION = os.getenv('IS_PRODUCTION', False)
+
+WT_TEMPLATETAGS = {
+    'SMART_STATIC_ACTIVE': IS_PRODUCTION,
+}
+```
