@@ -1,9 +1,14 @@
+from urllib import parse
+
 from django.templatetags.static import StaticNode
 from django import template
 
 from wt_templatetags.settings import app_settings
 
 register = template.Library()
+
+
+# helper functions
 
 
 def make_min(path):
@@ -38,6 +43,36 @@ def make_min(path):
     return path
 
 
+def static_version(path):
+    """
+    Append a version query string to a static file path.
+
+    Args:
+        path (str): The static file path
+
+    Returns:
+        str: Path with version query string conditionally appended
+
+    Raises:
+        ValueError: If path is not a string
+        AttributeError: If STATIC_VERSION not set and FAIL_SILENT is False
+    """
+    if not isinstance(path, str):
+        raise ValueError(f"Expected string. Received type "
+                         f"{type(path).__name__} instead.")
+
+    if static_version_ := app_settings.STATIC_VERSION:
+        return f"{path}?{parse.urlencode({'v' : static_version_})}"
+
+    if app_settings.STATIC_VERSION_FAIL_SILENT:
+        return path
+
+    raise AttributeError(f"Required setting 'STATIC_VERSION' not set.")
+
+
+# template tags
+
+
 class StaticMinNode(StaticNode):
     """
     StaticNode subclass that transforms paths to use minified files.
@@ -61,3 +96,31 @@ def static_min(parser, token):
         {# same as Django usage #}
     """
     return StaticMinNode.handle_token(parser, token)
+
+
+class StaticVersionNode(StaticNode):
+    """
+    StaticNode subclass that appends version to path.
+    """
+
+    @classmethod
+    def handle_simple(cls, path):
+        path = super().handle_simple(path)
+        return static_version(path)
+
+
+@register.tag('static_version')
+def do_static_version(parser, token):
+    """
+    Extends Django 'static' template tag to append a static version to the
+       file path as a querystring to encourage browser refresh if
+       versions change.
+
+    Usage::
+
+        {% static_version 'path/to/file.css' %}
+        {% static_version variable_with_path %}
+        {% static_version 'path/to/file.css' as versioned_css %}
+        {% static_version variable_with_path as varname %}
+    """
+    return StaticVersionNode.handle_token(parser, token)

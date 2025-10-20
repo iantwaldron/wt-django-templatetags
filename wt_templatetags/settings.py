@@ -11,7 +11,13 @@ DEFAULTS = {
     # validation is string
     'STATIC_MIN_SUFFIX': 'min',
     # validate is bool
-    'STATIC_MIN_FAIL_SILENT': True
+    'STATIC_MIN_FAIL_SILENT': True,
+    # validate string
+    'STATIC_VERSION': None,
+    # validate bool
+    'STATIC_VERSION_FAIL_SILENT': True,
+    # validate bool
+    'SMART_STATIC_ACTIVE': True
 }
 
 
