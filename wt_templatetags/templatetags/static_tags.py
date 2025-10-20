@@ -11,7 +11,7 @@ register = template.Library()
 # helper functions
 
 
-def make_min(path):
+def static_min(path):
     """
     Transform a static file path to use the minified version.
 
@@ -81,19 +81,21 @@ class StaticMinNode(StaticNode):
     @classmethod
     def handle_simple(cls, path):
         path = super().handle_simple(path)
-        return make_min(path)
+        return static_min(path)
 
 
-@register.tag
-def static_min(parser, token):
+@register.tag('static_min')
+def do_static_min(parser, token):
     """
     Extends Django 'static' template tag to transform path to use minified
        files (e.g., '.css' becomes '.min.css').
 
     Usage::
 
-        {% static path [as varname] %}
-        {# same as Django usage #}
+        {% static_min 'path/to/file.css' %}
+        {% static_min variable_with_path %}
+        {% static_min 'path/to/file.css' as versioned_css %}
+        {% static_min variable_with_path as varname %}
     """
     return StaticMinNode.handle_token(parser, token)
 
