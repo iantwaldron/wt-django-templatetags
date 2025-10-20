@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.test.signals import setting_changed
 
 # TODO: Implement validation system checks
 
@@ -70,3 +71,12 @@ class AppSettings:
 
 
 app_settings = AppSettings(None, DEFAULTS)
+
+def reload_app_settings(*_, **kwargs):
+    if kwargs.get('setting') == 'WT_TEMPLATETAGS':
+        app_settings.reload()
+
+# handle settings changes automatically
+# if not implemented, tests will need to call reload() if any
+#   settings are overriddden
+setting_changed.connect(reload_app_settings)
