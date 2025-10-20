@@ -53,6 +53,7 @@ class TestStaticMinTemplateTag(SimpleTestCase):
 
 
 class TestStaticVersionFunction(SimpleTestCase):
+
     @override_settings(
         WT_TEMPLATETAGS={'STATIC_VERSION': '1.2.3'}
     )
@@ -86,3 +87,21 @@ class TestStaticVersionFunction(SimpleTestCase):
         with self.assertRaises(AttributeError) as cm:
             static_version('css/main.css')
         self.assertIn("STATIC_VERSION", str(cm.exception))
+
+    def test_bad_path_type(self):
+        with self.assertRaises(ValueError) as cm:
+            # noinspection PyTypeChecker
+            static_version(100)
+        self.assertIn('Expected string.', str(cm.exception))
+
+class TestStaticVersionTemplateTag(SimpleTestCase):
+
+    @override_settings(
+        WT_TEMPLATETAGS={'STATIC_VERSION': '1.2.3'}
+    )
+    def test_basic_version(self):
+        template = Template(
+            "{% load static_tags %}{% static_version 'main.css' %}"
+        )
+        result = template.render(Context())
+        self.assertEqual(result, 'main.css?v=1.2.3')
