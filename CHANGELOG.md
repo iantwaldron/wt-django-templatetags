@@ -8,9 +8,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [//]: # (title opts: added / changed / deprecated / removed / fixed / security)
 
 ## [Unreleased]
+N/A
+
+## [1.1.0] - 2025-10-20
 
 ### Added
-- New module static_tags.
+- New module static_tags with template tags:
+  - static_min
+  - static_version, and
+  - smart_static
 - CHANGELOG.md
 
 ## [1.0.1] - 2025-09-20
