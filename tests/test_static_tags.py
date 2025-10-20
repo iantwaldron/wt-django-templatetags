@@ -1,4 +1,5 @@
 from django.test import SimpleTestCase, override_settings
+from django.template import Template, Context
 
 from wt_templatetags.templatetags.static_tags import make_min
 
@@ -39,3 +40,13 @@ class TestMakeMinFunction(SimpleTestCase):
             make_min('main.css')
         self.assertIn("No matching extension", str(cm.exception))
         self.assertIn("main.css", str(cm.exception))
+
+
+class TestStaticMinTemplateTag(SimpleTestCase):
+
+    def test_basic_path(self):
+        template = Template(
+            "{% load static_tags %}{% static_min 'main.css' %}"
+        )
+        result = template.render(Context())
+        self.assertEqual(result, 'main.min.css')
