@@ -3,7 +3,6 @@ from django import template
 
 from wt_templatetags.settings import app_settings
 
-
 register = template.Library()
 
 
