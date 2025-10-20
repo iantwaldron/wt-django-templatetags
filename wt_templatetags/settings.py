@@ -73,7 +73,7 @@ class AppSettings:
 app_settings = AppSettings(DEFAULTS, None)
 
 def reload_app_settings(*_, **kwargs):
-    if kwargs.get('setting') == 'WT_TEMPLATETAGS':
+    if kwargs.get('setting') == 'WT_TEMPLATETAGS':  # pragma: no cover
         app_settings.reload()
 
 # handle settings changes automatically
