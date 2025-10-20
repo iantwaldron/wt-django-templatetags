@@ -44,3 +44,8 @@ class TestAppSettings(SimpleTestCase):
         # Cache should be cleared
         self.assertEqual(len(self.settings._cached_attrs), 0)
         self.assertFalse('STATIC_MIN_SUFFIX' in self.settings.__dict__)
+
+    def test_init_with_user_settings(self):
+        user_settings = {'STATIC_MIN_SUFFIX': 'compressed'}
+        settings = AppSettings(user_settings=user_settings)
+        self.assertEqual(settings._user_settings, user_settings)
