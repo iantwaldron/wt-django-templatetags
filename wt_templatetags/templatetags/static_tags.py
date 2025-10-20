@@ -1,3 +1,4 @@
+# TODO: Add static_tags usage to docs.
 from urllib import parse
 
 from django.templatetags.static import StaticNode
