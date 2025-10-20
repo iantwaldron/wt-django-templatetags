@@ -15,14 +15,14 @@ class TestStaticMinFunction(SimpleTestCase):
         self.assertEqual(result, 'app.min.js')
 
     @override_settings(
-        WT_TEMPLATETAGS={'STATIC_MIN_SUFFIX': 'minified'}
+        WT_TEMPLATETAGS={'MIN_SUFFIX': 'minified'}
     )
     def test_custom_suffix(self):
         result = static_min('main.css')
         self.assertEqual(result, 'main.minified.css')
 
     @override_settings(
-        WT_TEMPLATETAGS={'STATIC_MIN_EXTENSIONS': ['.js']}
+        WT_TEMPLATETAGS={'STATIC_EXTENSIONS': ['.js']}
     )
     def test_no_matching_extension_silent(self):
         result = static_min('main.css')
@@ -30,7 +30,7 @@ class TestStaticMinFunction(SimpleTestCase):
 
     @override_settings(
         WT_TEMPLATETAGS={
-            'STATIC_MIN_EXTENSIONS': ['.js'],
+            'STATIC_EXTENSIONS': ['.js'],
             'STATIC_MIN_FAIL_SILENT': False
         }
     )

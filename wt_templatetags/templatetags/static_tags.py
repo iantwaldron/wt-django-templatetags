@@ -15,7 +15,7 @@ def static_min(path):
     """
     Transform a static file path to use the minified version.
 
-    Checks if the path ends with any extension in STATIC_MIN_EXTENSIONS,
+    Checks if the path ends with any extension in STATIC_EXTENSIONS,
     and if so, inserts STATIC_MIN_SUFFIX before the extension.
 
     Args:
@@ -31,14 +31,14 @@ def static_min(path):
                     STATIC_MIN_FAIL_SILENT is False.
     """
 
-    for ext in app_settings.STATIC_MIN_EXTENSIONS:
+    for ext in app_settings.STATIC_EXTENSIONS:
         if path.endswith(ext):
-            path = path.replace(ext, f'.{app_settings.STATIC_MIN_SUFFIX}{ext}')
+            path = path.replace(ext, f'.{app_settings.MIN_SUFFIX}{ext}')
             break
     else:
         if not app_settings.STATIC_MIN_FAIL_SILENT:
             raise ValueError(f"No matching extension for path '{path}' with "
-                             f"extensions '{', '.join(app_settings.STATIC_MIN_EXTENSIONS)}")
+                             f"extensions '{', '.join(app_settings.STATIC_EXTENSIONS)}")
 
     return path
 

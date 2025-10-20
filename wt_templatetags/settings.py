@@ -7,9 +7,9 @@ DEFAULTS = {
     # validate is sequence
     # validate items are string
     # validate char first position is dot
-    'STATIC_MIN_EXTENSIONS': ['.css', '.js'],
+    'STATIC_EXTENSIONS': ['.css', '.js'],
     # validation is string
-    'STATIC_MIN_SUFFIX': 'min',
+    'MIN_SUFFIX': 'min',
     # validate is bool
     'STATIC_MIN_FAIL_SILENT': True,
     # validate string
@@ -17,7 +17,7 @@ DEFAULTS = {
     # validate bool
     'STATIC_VERSION_FAIL_SILENT': True,
     # validate bool
-    'SMART_STATIC_ACTIVE': True
+    'SMART_STATIC_ACTIVE': False
 }
 
 
