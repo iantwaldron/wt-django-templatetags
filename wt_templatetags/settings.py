@@ -70,7 +70,7 @@ class AppSettings:
             delattr(self, '_user_settings')
 
 
-app_settings = AppSettings(None, DEFAULTS)
+app_settings = AppSettings(DEFAULTS, None)
 
 def reload_app_settings(*_, **kwargs):
     if kwargs.get('setting') == 'WT_TEMPLATETAGS':
