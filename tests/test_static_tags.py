@@ -5,7 +5,6 @@ from wt_templatetags.templatetags.static_tags import static_min, static_version
 
 
 class TestStaticMinFunction(SimpleTestCase):
-    """Direct unit tests for static_min function"""
 
     def test_css_extension(self):
         result = static_min('main.css')
@@ -105,3 +104,56 @@ class TestStaticVersionTemplateTag(SimpleTestCase):
         )
         result = template.render(Context())
         self.assertEqual(result, 'main.css?v=1.2.3')
+
+
+class TestSmartStaticNode(SimpleTestCase):
+
+    @override_settings(
+        WT_TEMPLATETAGS={
+            'SMART_STATIC_ACTIVE': True,
+            'STATIC_VERSION': '1.0.0',
+        }
+    )
+    def test_active_applies_both_transforms(self):
+        from wt_templatetags.settings import app_settings
+        app_settings.reload()
+
+        template = Template(
+            "{% load static_tags %}{% smart_static 'css/main.css' %}"
+        )
+        result = template.render(Context())
+        # Should have both min and version
+        self.assertIn('main.min.css', result)
+        self.assertIn('?v=1.0.0', result)
+
+    @override_settings(
+        WT_TEMPLATETAGS={'SMART_STATIC_ACTIVE': False}
+    )
+    def test_inactive_returns_plain_path(self):
+        from wt_templatetags.settings import app_settings
+        app_settings.reload()
+
+        template = Template(
+            "{% load static_tags %}{% smart_static 'css/main.css' %}"
+        )
+        result = template.render(Context())
+        self.assertEqual(result, 'css/main.css')
+
+    @override_settings(
+        WT_TEMPLATETAGS={
+            'SMART_STATIC_ACTIVE': True,
+            'STATIC_VERSION': '1.0.0',
+        }
+    )
+    def test_as_variable_syntax(self):
+        from wt_templatetags.settings import app_settings
+        app_settings.reload()
+
+        template = Template(
+            "{% load static_tags %}"
+            "{% smart_static 'css/main.css' as my_css %}"
+            "{{ my_css }}"
+        )
+        result = template.render(Context())
+        self.assertIn('main.min.css', result)
+        self.assertIn('?v=1.0.0', result)

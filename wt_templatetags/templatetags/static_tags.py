@@ -126,3 +126,40 @@ def do_static_version(parser, token):
         {% static_version variable_with_path as varname %}
     """
     return StaticVersionNode.handle_token(parser, token)
+
+
+class SmartStaticNode(StaticNode):
+    """
+    Combines static_min and static_version with conditional logic for
+       production vs development environments.
+    """
+
+    @classmethod
+    def handle_simple(cls, path):
+        # TODO: Add granular control w/ settings (SMART_STATIC_MINIFY,
+        #  SMART_STATIC_VERSION) to allow independent control of minification
+        #  and versioning
+        path = super().handle_simple(path)
+        if app_settings.SMART_STATIC_ACTIVE:
+            return static_version(static_min(path))
+        return path
+
+
+@register.tag('smart_static')
+def smart_static(parser, token):
+    """
+    Extends Django 'static' template tag and conditionally implements
+       'static_min' and 'static_version' if setting 'SMART_STATIC_ACTIVE'
+       is True.
+
+    It's recommended this setting be established with an environment variable
+       that indicates whether the environment is development or production.
+
+    Usage::
+
+        {% smart_static 'path/to/file.css' %}
+        {% smart_static variable_with_path %}
+        {% smart_static 'path/to/file.css' as versioned_css %}
+        {% smart_static variable_with_path as varname %}
+    """
+    return SmartStaticNode.handle_token(parser, token)
