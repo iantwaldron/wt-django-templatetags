@@ -1,7 +1,7 @@
 from django.templatetags.static import StaticNode
 from django import template
 
-import wt_templatetags.settings as settings
+from wt_templatetags.settings import app_settings
 
 
 register = template.Library()
@@ -27,14 +27,14 @@ def make_min(path):
                     STATIC_MIN_FAIL_SILENT is False.
     """
 
-    for ext in settings.STATIC_MIN_EXTENSIONS:
+    for ext in app_settings.STATIC_MIN_EXTENSIONS:
         if path.endswith(ext):
-            path = path.replace(ext, f'.{settings.STATIC_MIN_SUFFIX}{ext}')
+            path = path.replace(ext, f'.{app_settings.STATIC_MIN_SUFFIX}{ext}')
             break
     else:
-        if not settings.STATIC_MIN_FAIL_SILENT:
+        if not app_settings.STATIC_MIN_FAIL_SILENT:
             raise ValueError(f"No matching extension for path '{path}' with "
-                             f"extensions '{', '.join(settings.STATIC_MIN_EXTENSIONS)}")
+                             f"extensions '{', '.join(app_settings.STATIC_MIN_EXTENSIONS)}")
 
     return path
 
