@@ -1,6 +1,5 @@
 # wt-django-templatetags
-[![Pytest](https://github.com/ian-wt/wt-django-templatetags/actions/workflows/pytest.yaml/badge.svg)](https://github.com/ian-wt/wt-django-templatetags/actions/workflows/pytest.yaml)
-[![codecov](https://codecov.io/gh/ian-wt/wt-django-templatetags/graph/badge.svg?token=9MHTDPGG1N)](https://codecov.io/gh/ian-wt/wt-django-templatetags)
+[![Pytest](https://github.com/iantwaldron/wt-django-templatetags/actions/workflows/pytest.yaml/badge.svg)](https://github.com/iantwaldron/wt-django-templatetags/actions/workflows/pytest.yaml)[![codecov](https://codecov.io/gh/iantwaldron/wt-django-templatetags/graph/badge.svg?token=1BDOU6QG1V)](https://codecov.io/gh/iantwaldron/wt-django-templatetags)
 
 Useful templatetags for Django projects.
 
